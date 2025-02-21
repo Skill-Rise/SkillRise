@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillRise - Explore Our Courses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: {
+              400: '#2dd4bf',
+              500: '#14b8a6',
+            },
+            zinc: {
+              400: '#a1a1aa',
+              700: '#3f3f46',
+              800: '#27272a',
+              900: '#18181b',
+              950: '#09090b',
+            },
+            yellow: {
+              500: '#eab308',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-zinc-950 text-white">
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-zinc-900/80 backdrop-blur-lg border-b border-zinc-800">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-12">
+          <a href="/dashboard/dashboard.html" class="text-xl font-bold">
+            Skill<span class="text-teal-400">Rise</span>
+          </a>
+          <div class="hidden md:flex space-x-6">
+            <a href="/courses/course.html" class="text-teal-400">Courses</a>
+            <a href="/mentors/mentors.html" class="text-zinc-400 hover:text-white transition-colors">Mentors</a>
+            <a href="/community/community.html" class="text-zinc-400 hover:text-white transition-colors">Community</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="/login" class="px-4 py-2 text-zinc-400 hover:text-white transition-colors">Log in</a>
+          <a href="/register" class="px-4 py-2 bg-teal-500 rounded-lg hover:bg-teal-400 transition-colors">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-24 pb-20 px-4">
+    <div class="container mx-auto max-w-6xl">
+      <!-- Header -->
+      <div class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">Explore Our Courses</h1>
+        <p class="text-zinc-400">Discover the perfect course to advance your skills and career</p>
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="mb-12">
+        <div class="flex flex-col md:flex-row gap-4 mb-6">
+          <div class="relative flex-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-3 text-zinc-400 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text"
+              id="search-input"
+              placeholder="Search for courses..."
+              class="w-full pl-10 pr-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg focus:outline-none focus:border-teal-500"
+            />
+          </div>
+          <div class="flex gap-4">
+            <div class="relative" id="category-dropdown">
+              <button 
+                onclick="toggleDropdown('category-options')" 
+                class="px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="21" x2="4" y2="14"></line>
+                  <line x1="4" y1="10" x2="4" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12" y2="3"></line>
+                  <line x1="20" y1="21" x2="20" y2="16"></line>
+                  <line x1="20" y1="12" x2="20" y2="3"></line>
+                  <line x1="1" y1="14" x2="7" y2="14"></line>
+                  <line x1="9" y1="8" x2="15" y2="8"></line>
+                  <line x1="17" y1="16" x2="23" y2="16"></line>
+                </svg>
+                <span id="selected-category">All</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div id="category-options" class="hidden absolute mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl z-10">
+                <button onclick="selectCategory('All')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">All</button>
+                <button onclick="selectCategory('Development')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Development</button>
+                <button onclick="selectCategory('Design')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Design</button>
+                <button onclick="selectCategory('Data Science')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Data Science</button>
+                <button onclick="selectCategory('Marketing')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Marketing</button>
+                <button onclick="selectCategory('Business')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Business</button>
+              </div>
+            </div>
+            <div class="relative" id="level-dropdown">
+              <button 
+                onclick="toggleDropdown('level-options')" 
+                class="px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="20" x2="12" y2="10"></line>
+                  <line x1="18" y1="20" x2="18" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="16"></line>
+                </svg>
+                <span id="selected-level">All Levels</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div id="level-options" class="hidden absolute mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl z-10">
+                <button onclick="selectLevel('All Levels')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">All Levels</button>
+                <button onclick="selectLevel('Beginner')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Beginner</button>
+                <button onclick="selectLevel('Intermediate')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Intermediate</button>
+                <button onclick="selectLevel('Advanced')" class="w-full px-4 py-2 text-left hover:bg-zinc-800 transition-colors">Advanced</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="courses-grid">
+        <!-- Course cards will be dynamically rendered here -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-900 border-t border-zinc-800 py-12">
+    <div class="container mx-auto max-w-6xl px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <span class="text-xl font-bold mb-4 block">
+            Skill<span class="text-teal-400">Rise</span>
+          </span>
+          <p class="text-zinc-400">Empowering learners worldwide with quality education.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Careers</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Press</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Help Center</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Terms</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Privacy</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Community</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Get in Touch</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Support</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Feedback</a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Partner with Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-zinc-800 text-center text-zinc-400">
+        © 2025 SkillRise. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Course data
+    const courses = [
+      {
+        title: "Complete Web Development Bootcamp",
+        instructor: "Sarah Johnson",
+        rating: 4.8,
+        students: 15432,
+        duration: "12 weeks",
+        price: "$99.99",
+        category: "Development",
+        level: "Beginner"
+      },
+      {
+        title: "UI/UX Design Masterclass",
+        instructor: "Michael Chen",
+        rating: 4.9,
+        students: 8765,
+        duration: "8 weeks",
+        price: "$89.99",
+        category: "Design",
+        level: "Intermediate"
+      },
+      {
+        title: "Data Science Fundamentals",
+        instructor: "Alex Thompson",
+        rating: 4.7,
+        students: 12543,
+        duration: "10 weeks",
+        price: "$94.99",
+        category: "Data Science",
+        level: "Beginner"
+      },
+      {
+        title: "Advanced JavaScript Patterns",
+        instructor: "Emma Davis",
+        rating: 4.9,
+        students: 7654,
+        duration: "6 weeks",
+        price: "$79.99",
+        category: "Development",
+        level: "Advanced"
+      },
+      {
+        title: "Digital Marketing Strategy",
+        instructor: "Ryan Miller",
+        rating: 4.6,
+        students: 9876,
+        duration: "8 weeks",
+        price: "$69.99",
+        category: "Marketing",
+        level: "Intermediate"
+      },
+      {
+        title: "Machine Learning Essentials",
+        instructor: "David Wilson",
+        rating: 4.8,
+        students: 6543,
+        duration: "12 weeks",
+        price: "$109.99",
+        category: "Data Science",
+        level: "Advanced"
+      }
+    ];
+
+    // Filters
+    let selectedCategory = 'All';
+    let selectedLevel = 'All Levels';
+    let searchQuery = '';
+
+    // Toggle dropdown visibility
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.classList.toggle('hidden');
+    }
+
+    // Select category
+    function selectCategory(category) {
+      selectedCategory = category;
+      document.getElementById('selected-category').textContent = category;
+      document.getElementById('category-options').classList.add('hidden');
+      renderCourses();
+    }
+
+    // Select level
+    function selectLevel(level) {
+      selectedLevel = level;
+      document.getElementById('selected-level').textContent = level;
+      document.getElementById('level-options').classList.add('hidden');
+      renderCourses();
+    }
+
+    // Create course card
+    function createCourseCard(course) {
+      return `
+        <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-700 transition-colors">
+          <div class="h-64 bg-zinc-800 relative group cursor-pointer">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <button class="px-6 py-3 bg-teal-500 text-white rounded-lg transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                Preview Course
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2 py-1 bg-zinc-800 rounded text-sm">${course.category}</span>
+              <span class="px-2 py-1 bg-zinc-800 rounded text-sm">${course.level}</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">${course.title}</h3>
+            <p class="text-zinc-400 mb-4">${course.instructor}</p>
+            <div class="flex items-center text-sm text-zinc-400 mb-4">
+              <div class="flex items-center mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-500 mr-1" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                ${course.rating}
+              </div>
+              <div class="flex items-center mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                ${course.students.toLocaleString()}
+              </div>
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                ${course.duration}
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xl font-bold">${course.price}</span>
+              <button class="px-4 py-2 bg-teal-500/10 text-teal-400 rounded-lg hover:bg-teal-500/20 transition-colors">
+                Enroll Now
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render filtered courses
+    function renderCourses() {
+      const coursesGrid = document.getElementById('courses-grid');
+      
+      // Filter courses
+      const filteredCourses = courses.filter(course => {
+        const categoryMatch = selectedCategory === 'All' || course.category === selectedCategory;
+        const levelMatch = selectedLevel === 'All Levels' || course.level === selectedLevel;
+        const searchMatch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           course.instructor.toLowerCase().includes(searchQuery.toLowerCase());
+        return categoryMatch && levelMatch && searchMatch;
+      });
+      
+      // Render courses
+      coursesGrid.innerHTML = filteredCourses.map(course => createCourseCard(course)).join('');
+    }
+
+    // Search input event listener
+    document.getElementById('search-input').addEventListener('input', function(e) {
+      searchQuery = e.target.value;
+      renderCourses();
+    });
+
+    // Close dropdowns when clicking outside
+    window.addEventListener('click', function(e) {
+      if (!e.target.closest('#category-dropdown')) {
+        document.getElementById('category-options').classList.add('hidden');
+      }
+      if (!e.target.closest('#level-dropdown')) {
+        document.getElementById('level-options').classList.add('hidden');
+      }
+    });
+
+    // Initial render
+    renderCourses();
+  </script>
+</body>
+</html>
