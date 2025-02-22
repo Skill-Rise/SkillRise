@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillRise - Join Now</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles to match SkillRise theme */
+    body {
+      background-color: #09090b; /* zinc-950 */
+      color: white;
+    }
+    
+    .bg-zinc-900 {
+      background-color: #18181b;
+    }
+    
+    .bg-zinc-800 {
+      background-color: #27272a;
+    }
+    
+    .border-zinc-800 {
+      border-color: #27272a;
+    }
+    
+    .border-zinc-700 {
+      border-color: #3f3f46;
+    }
+    
+    .text-zinc-400 {
+      color: #a1a1aa;
+    }
+    
+    .text-zinc-500 {
+      color: #71717a;
+    }
+    
+    .bg-teal-500 {
+      background-color: #14b8a6;
+    }
+    
+    .bg-teal-500\/10 {
+      background-color: rgba(20, 184, 166, 0.1);
+    }
+    
+    .text-teal-400 {
+      color: #2dd4bf;
+    }
+    
+    .border-teal-500 {
+      border-color: #14b8a6;
+    }
+    
+    .border-red-500 {
+      border-color: #ef4444;
+    }
+    
+    .text-red-500 {
+      color: #ef4444;
+    }
+    
+    .hover\:bg-teal-400:hover {
+      background-color: #2dd4bf;
+    }
+    
+    .focus\:border-teal-500:focus {
+      border-color: #14b8a6;
+    }
+    
+    .backdrop-blur-lg {
+      backdrop-filter: blur(16px);
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    /* Icon placeholders using unicode symbols since we can't use Lucide icons directly */
+    .icon-user::before {
+      content: "👤";
+      font-size: 14px;
+    }
+    
+    .icon-mail::before {
+      content: "✉️";
+      font-size: 14px;
+    }
+    
+    .icon-lock::before {
+      content: "🔒";
+      font-size: 14px;
+    }
+    
+    .icon-check::before {
+      content: "✅";
+      font-size: 14px;
+      margin-right: 8px;
+    }
+    
+    .icon-alert::before {
+      content: "⚠️";
+      font-size: 12px;
+      margin-right: 4px;
+    }
+    
+    .icon-arrow-right::after {
+      content: " →";
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="w-full z-50 bg-zinc-900 bg-opacity-80 border-b border-zinc-800">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="/index.html" class="text-xl font-bold">
+          Skill<span class="text-teal-400">Rise</span>
+        </a>
+        <div class="flex items-center space-x-4">
+          <a href="/login" class="px-4 py-2 text-zinc-400 hover:text-white transition-colors">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-16 pb-20 px-4 flex items-center justify-center min-h-screen">
+    <div class="container max-w-md">
+      <div class="bg-zinc-900 rounded-2xl border border-zinc-800 p-8">
+        <div class="mb-6 text-center">
+          <h1 class="text-2xl font-bold mb-2">Join SkillRise</h1>
+          <p class="text-zinc-400">Start your learning journey today</p>
+        </div>
+
+        <!-- Step Indicator -->
+        <div class="flex items-center justify-center mb-8">
+          <div class="flex items-center">
+            <div id="step-indicator-1" class="w-8 h-8 rounded-full flex items-center justify-center bg-teal-500 text-white">
+              1
+            </div>
+            <div id="step-indicator-line" class="w-16 h-1 bg-zinc-800"></div>
+            <div id="step-indicator-2" class="w-8 h-8 rounded-full flex items-center justify-center bg-zinc-800 text-zinc-500">
+              2
+            </div>
+          </div>
+        </div>
+
+        <form id="registration-form">
+          <!-- Step 1: Account Information -->
+          <div id="step-1-container" class="space-y-4">
+            <div class="space-y-1">
+              <label for="name" class="block text-sm font-medium text-zinc-400">
+                Full Name
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-zinc-500">
+                  <span class="icon-user"></span>
+                </div>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full pl-10 pr-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-teal-500"
+                  placeholder="John Doe"
+                />
+              </div>
+              <p id="name-error" class="text-red-500 text-xs mt-1 hidden">
+                <span class="icon-alert"></span> Name is required
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <label for="email" class="block text-sm font-medium text-zinc-400">
+                Email Address
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-zinc-500">
+                  <span class="icon-mail"></span>
+                </div>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full pl-10 pr-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-teal-500"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <p id="email-error" class="text-red-500 text-xs mt-1 hidden">
+                <span class="icon-alert"></span> Email is required
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <label for="password" class="block text-sm font-medium text-zinc-400">
+                Password
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-zinc-500">
+                  <span class="icon-lock"></span>
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="w-full pl-10 pr-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-teal-500"
+                  placeholder="At least 8 characters"
+                />
+              </div>
+              <p id="password-error" class="text-red-500 text-xs mt-1 hidden">
+                <span class="icon-alert"></span> Password must be at least 8 characters
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <label for="confirmPassword" class="block text-sm font-medium text-zinc-400">
+                Confirm Password
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-zinc-500">
+                  <span class="icon-lock"></span>
+                </div>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  class="w-full pl-10 pr-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-teal-500"
+                  placeholder="Confirm your password"
+                />
+              </div>
+              <p id="confirm-password-error" class="text-red-500 text-xs mt-1 hidden">
+                <span class="icon-alert"></span> Passwords do not match
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2: Interests -->
+          <div id="step-2-container" class="space-y-4 hidden">
+            <div>
+              <p class="block text-sm font-medium text-zinc-400 mb-3">
+                Select Your Interests (Choose at least one)
+              </p>
+              <div class="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="Web Development"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>Web Development</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="UI/UX Design"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>UI/UX Design</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="Data Science"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>Data Science</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="Digital Marketing"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>Digital Marketing</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="Business & Entrepreneurship"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>Business & Entrepreneurship</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="Mobile Development"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>Mobile Development</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="Game Development"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>Game Development</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  class="interest-option p-3 rounded-lg border text-sm text-left border-zinc-700 bg-zinc-800 text-zinc-300"
+                  data-interest="AI & Machine Learning"
+                >
+                  <div class="flex items-center">
+                    <span class="interest-check hidden icon-check"></span>
+                    <span>AI & Machine Learning</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <button
+              type="button"
+              id="next-button"
+              class="w-full py-3 bg-teal-500 rounded-lg hover:bg-teal-400 transition-colors flex items-center justify-center"
+            >
+              Continue <span class="icon-arrow-right"></span>
+            </button>
+          </div>
+
+          <div id="login-link" class="mt-6 text-center text-sm text-zinc-400">
+            <p>
+              Already have an account?
+              <a href="/login" class="text-teal-400 hover:underline ml-1">
+                Log in
+              </a>
+            </p>
+          </div>
+
+          <div class="mt-6 text-center text-xs text-zinc-500">
+            <p>
+              By registering, you agree to our
+              <a href="/terms" class="text-zinc-400 hover:underline mx-1">
+                Terms of Service
+              </a>
+              and
+              <a href="/privacy" class="text-zinc-400 hover:underline ml-1">
+                Privacy Policy
+              </a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let currentStep = 1;
+      const selectedInterests = [];
+      
+      // DOM elements
+      const step1Container = document.getElementById('step-1-container');
+      const step2Container = document.getElementById('step-2-container');
+      const stepIndicator1 = document.getElementById('step-indicator-1');
+      const stepIndicator2 = document.getElementById('step-indicator-2');
+      const stepIndicatorLine = document.getElementById('step-indicator-line');
+      const nextButton = document.getElementById('next-button');
+      const loginLink = document.getElementById('login-link');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const nameError = document.getElementById('name-error');
+      const emailError = document.getElementById('email-error');
+      const passwordError = document.getElementById('password-error');
+      const confirmPasswordError = document.getElementById('confirm-password-error');
+      const interestOptions = document.querySelectorAll('.interest-option');
+      
+      // Add event listeners
+      nextButton.addEventListener('click', handleNextStep);
+      
+      // Interest option buttons
+      interestOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          const interest = this.getAttribute('data-interest');
+          const checkIcon = this.querySelector('.interest-check');
+          
+          if (selectedInterests.includes(interest)) {
+            // Remove interest
+            const index = selectedInterests.indexOf(interest);
+            selectedInterests.splice(index, 1);
+            
+            // Update UI
+            this.classList.remove('border-teal-500', 'bg-teal-500/10', 'text-teal-400');
+            this.classList.add('border-zinc-700', 'bg-zinc-800', 'text-zinc-300');
+            checkIcon.classList.add('hidden');
+          } else {
+            // Add interest
+            selectedInterests.push(interest);
+            
+            // Update UI
+            this.classList.remove('border-zinc-700', 'bg-zinc-800', 'text-zinc-300');
+            this.classList.add('border-teal-500', 'bg-teal-500/10', 'text-teal-400');
+            checkIcon.classList.remove('hidden');
+          }
+        });
+      });
+      
+      function handleNextStep() {
+        if (currentStep === 1) {
+          // Validate step 1
+          const isValid = validateStep1();
+          
+          if (isValid) {
+            // Move to step 2
+            currentStep = 2;
+            step1Container.classList.add('hidden');
+            step2Container.classList.remove('hidden');
+            
+            // Update step indicators
+            stepIndicator2.classList.remove('bg-zinc-800', 'text-zinc-500');
+            stepIndicator2.classList.add('bg-teal-500', 'text-white');
+            stepIndicatorLine.classList.remove('bg-zinc-800');
+            stepIndicatorLine.classList.add('bg-teal-500');
+            
+            // Update button text
+            nextButton.textContent = 'Complete Registration';
+            nextButton.innerHTML = 'Complete Registration <span class="icon-arrow-right"></span>';
+            
+            // Hide login link
+            loginLink.classList.add('hidden');
+          }
+        } else if (currentStep === 2) {
+          // Submit the form
+          handleSubmit();
+        }
+      }
+      
+      function validateStep1() {
+        let isValid = true;
+        
+        // Reset errors
+        nameError.classList.add('hidden');
+        emailError.classList.add('hidden');
+        passwordError.classList.add('hidden');
+        confirmPasswordError.classList.add('hidden');
+        
+        nameInput.classList.remove('border-red-500');
+        emailInput.classList.remove('border-red-500');
+        passwordInput.classList.remove('border-red-500');
+        confirmPasswordInput.classList.remove('border-red-500');
+        
+        // Validate name
+        if (!nameInput.value.trim()) {
+          nameError.classList.remove('hidden');
+          nameInput.classList.add('border-red-500');
+          isValid = false;
+        }
+        
+        // Validate email
+        if (!emailInput.value.trim()) {
+          emailError.textContent = '⚠️ Email is required';
+          emailError.classList.remove('hidden');
+          emailInput.classList.add('border-red-500');
+          isValid = false;
+        } else if (!/^\S+@\S+\.\S+$/.test(emailInput.value)) {
+          emailError.textContent = '⚠️ Email is invalid';
+          emailError.classList.remove('hidden');
+          emailInput.classList.add('border-red-500');
+          isValid = false;
+        }
+        
+        // Validate password
+        if (!passwordInput.value) {
+          passwordError.textContent = '⚠️ Password is required';
+          passwordError.classList.remove('hidden');
+          passwordInput.classList.add('border-red-500');
+          isValid = false;
+        } else if (passwordInput.value.length < 8) {
+          passwordError.textContent = '⚠️ Password must be at least 8 characters';
+          passwordError.classList.remove('hidden');
+          passwordInput.classList.add('border-red-500');
+          isValid = false;
+        }
+        
+        // Validate confirm password
+        if (passwordInput.value !== confirmPasswordInput.value) {
+          confirmPasswordError.classList.remove('hidden');
+          confirmPasswordInput.classList.add('border-red-500');
+          isValid = false;
+        }
+        
+        return isValid;
+      }
+      
+      function handleSubmit() {
+        // Here you would typically send the data to your backend
+        const formData = {
+          name: nameInput.value,
+          email: emailInput.value,
+          password: passwordInput.value,
+          interests: selectedInterests
+        };
+        
+        console.log('Form submitted:', formData);
+        
+        // Redirect to dashboard after successful registration
+        window.location.href = '/dashboard';
+      }
+    });
+  </script>
+</body>
+</html>
